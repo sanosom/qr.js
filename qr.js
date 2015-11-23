@@ -1017,9 +1017,10 @@
       data = normalizeData(data);
 
       // Module size of the generated QR code (i.e. 1-10).
-      var size = data.size >= 1 && data.size <= 10 ? data.size : 4;
+      //var size = data.size >= 1 && data.size <= 10 ? data.size : 4;
       // Actual size of the QR code symbol and is scaled to 25 pixels (e.g. 1 = 25px, 3 = 75px).
-      size *= 25;
+      //size *= 25;
+      var size = data.size || 256;
 
       // `<canvas>` element used to render the QR code.
       var cvs = data.canvas || createCanvas();
@@ -1043,9 +1044,9 @@
       // Determine the *pixel* size.
       var px = size;
       px /= width;
-      px  = Math.floor(px);
+      //px  = Math.floor(px);
 
-      var offset = Math.floor((size - (px * width)) / 2);
+      //var offset = Math.floor((size - (px * width)) / 2);
 
       // Draw the QR code.
       c2d.clearRect(0, 0, size, size);
@@ -1058,7 +1059,7 @@
       for (i = 0; i < width; i++) {
         for (j = 0; j < width; j++) {
           if (frame[j * width + i]) {
-            c2d.fillRect(px * i + offset, px * j + offset, px, px);
+            c2d.fillRect(px * i, px * j, px, px);
           }
         }
       }
